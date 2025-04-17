@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class ="container">
+<h1>Add A Contact</h1>
+<input type="text" [(ngModel)]="firstName" name="firstName" required />
+<input type="text" [(ngModel)]="lastName" name="lastName" required />
+<input type="email" [(ngModel)]="email" name="email" required />
+<input type="text" [(ngModel)]="phone" name="phone" required />
+
+<button (click)="onClick()">
+  {{ editingId !== null ? 'Update Contact' : 'Add Contact' }}
+</button>
+
+<hr />
+
+<div class="contact-list">
+  <h2>Contact List</h2>
+
+  <div *ngFor="let contact of contactList" class="contact-card">
+    <h3>Contact ID: {{ contact.id }}</h3>
+
+    <label>First Name:</label>
+    <input type="text" [(ngModel)]="contact.firstName" name="firstName{{ contact.id }}" />
+
+    <label>Last Name:</label>
+    <input type="text" [(ngModel)]="contact.lastName" name="lastName{{ contact.id }}" />
+
+    <label>Email:</label>
+    <input type="email" [(ngModel)]="contact.email" name="email{{ contact.id }}" />
+
+    <label>Phone:</label>
+    <input type="text" [(ngModel)]="contact.phone" name="phone{{ contact.id }}" />
+
+    <button (click)="editContact(contact.id)">Update</button>
+    <button (click)="deleteContact(contact.id)">Delete</button>
+  </div>
+</div>
+</div>
